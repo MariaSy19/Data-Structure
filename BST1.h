@@ -34,6 +34,8 @@ public:
 ///implementation functions
 ///=================================================
 
+
+
 ///setter method
 template<typename T>
 void BST1<T>::setRoot(node<T> *root)

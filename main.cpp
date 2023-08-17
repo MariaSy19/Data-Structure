@@ -1,5 +1,6 @@
 #include "Queue.cpp"
 #include "BST1.h"
+#include "Linked_List.h"
 int main() {
     int choice;
     do {
@@ -115,7 +116,7 @@ int main() {
                         cin >> item;
                         int *finalSearch = bst.searchBST(item);
                         if (finalSearch) {
-                            cout << "Found in the BST: " << *finalSearch << endl;
+                            cout << "Found in the BST: " << bst.searchBST(item)<< endl;
                         } else {
                             cout << item << " not found in the BST." << endl;
                         }
