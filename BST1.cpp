@@ -1,6 +1,3 @@
-
-#ifndef UNTITLED49_BST1_H
-#define UNTITLED49_BST1_H
 using namespace std;
 template<typename T>
 class node
@@ -20,7 +17,6 @@ public:
     node<T> *getRoot() const;
 
     void setRoot(node<T> *root);
-
     T *searchBST( const T& item) const;
     void breadthFirst();
     void insertBST(const T& item);
@@ -71,7 +67,7 @@ T* BST1<T>::searchBST(const T& item) const
     return nullptr; // Item not found, return nullptr
 }
 
-// Function to perform breadth-first traversal
+/// Function breadth-first traversal
 template<typename T>
 void BST1<T>::breadthFirst()
 {
@@ -95,7 +91,7 @@ void BST1<T>::breadthFirst()
     }
 }
 
-// Function to insert an item into the BST
+/// Function to insert an item into the BST
 template<typename T>
 void BST1<T>::insertBST(const T& item)
 {
@@ -157,7 +153,7 @@ void BST1<T>::print()
     cout << endl;
 }
 
-///delete from tree function
+///delete node from tree function
 template<typename T>
 node<T>* BST1<T>::deleteNode(node<T>* root, const T& item)
 {
@@ -215,4 +211,3 @@ node<T>* BST1<T>::findMinNode(node<T>* root)
     return root;
 }
 
-#endif //UNTITLED49_BST1_H
