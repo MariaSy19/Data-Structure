@@ -3,27 +3,81 @@
 #include "Linked_List.h"
 int main() {
     int choice;
+    int sz, num, item;
+    SLL<int> sll;
+    queue<int> queue1;
+    BST1<int> bst;
     do {
-    cout << "--Menu--\n";
-    cout << "1.Queue.\n";
-    cout << "2.BST.\n";
-    cout << "3.Exit.\n";
-    cout << "Input what you want: \n";
-    cin >> choice;
-    while (choice < 1 || choice > 2)
+        cout << "--Menu--\n";
+        cout << "1. Linked List.\n";
+        cout << "2. Queue.\n";
+        cout << "3. BST.\n";
+        cout << "4. Exit.\n";
+        cout << "Input your choice: ";
+        cin >> choice;
+    while (choice < 1 || choice > 4)
     {
         cout << "Invalid Input!\n";
-        cout << "--Menu--\n";
-        cout << "1. Queue.\n";
-        cout << "2. BST.\n";
+        cout << "1.Linked List.\n";
+        cout << "2.Queue.\n";
+        cout << "3.BST.\n";
+        cout << "4.Exit.\n";
         cout << "Input what you want: \n";
         cin >> choice;
     }
-    switch (choice) {
-        case 1: {
-            cout << "--Menu--\n";
+    switch (choice)
+    {
+        case 1:
+        {
+            SLL<int> sll;
+            cout << "=============================\n";
+            cout << "How many elements do you want to added..\n";
+            cin >> sz;
+            for (int i = 0; i < sz; ++i)
+            {
+                cout << "input the element: \n";
+                cin >> num;
+                //Insert the elements into BST
+                sll.addToHead(num);
+            }
+            cout << "--Menu SLL--\n";
+            cout << "1.Add To Head.\n";
+            cout << "=============================\n";
+            cout << "Input what you want: \n";
+            cin >> choice;
+            switch (choice)
+            {
+                case 1:
+                {
+                    cout << "--SLL before add Item--\n";
+                    sll.print();
+                    cout << "=============================\n";
+                    cout << "Input the item: \n";
+                    cin >> item;
+                    sll.addToHead(item);
+                    cout << "=============================\n";
+                    cout << "--After add to head--\n";
+                    sll.print();
+                    cout << "=============================\n";
+                    break;
+                }
+                case 2:
+                {
+                    exit(0);
+                }
+                default:
+                {
+                    cout << "Invalid Input!\n";
+                    break;
+                }
+            }
+        }
+        case 2:
+        {
+            cout << "--Menu Queue--\n";
             cout << "1. Binary number function.\n";
             cout << "2. Sorting queue function.\n";
+            cout << "=============================\n";
             cout << "Input what you want: \n";
             cin >> choice;
             queue<int> queue1; // Create an instance of the Queue class
@@ -55,9 +109,10 @@ int main() {
 
             break;
         }
-        case 2: {
+        case 3:
+        {
             BST1<int> bst;
-            int sz, num, item;
+
             cout << "=============================\n";
             cout << "How many elements do you want to added..\n";
             cin >> sz;
@@ -71,9 +126,6 @@ int main() {
             cout << "The elements in the tree: \n";
             bst.print();
             cout << "=============================\n";
-            do {
-
-
                 cout << "--Menu BST--\n";
                 cout << "1.In-order traversal.\n";
                 cout << "2.Searching in the BST.\n";
@@ -186,11 +238,9 @@ int main() {
                         break;
                     }
                 }
-            } while (choice != 7);
-
 
         }
-        case 3:
+        case 4:
         {
             exit(0);
         }
@@ -199,7 +249,7 @@ int main() {
             break;
     }
 
-    } while (choice != 3);
+    } while (choice != 4);
             return 0;
 }
 
