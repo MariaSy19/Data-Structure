@@ -13,7 +13,8 @@ int main() {
         cout << "2. Queue.\n";
         cout << "3. BST.\n";
         cout << "4. Exit.\n";
-        cout << "Input your choice: ";
+        cout << "===============================\n";
+        cout << "Input your choice: \n";
         cin >> choice;
     while (choice < 1 || choice > 4)
     {
@@ -22,55 +23,64 @@ int main() {
         cout << "2.Queue.\n";
         cout << "3.BST.\n";
         cout << "4.Exit.\n";
+        cout << "===============================\n";
         cout << "Input what you want: \n";
         cin >> choice;
     }
-    switch (choice)
-    {
-        case 1:
-        {
-            SLL<int> sll;
-            cout << "=============================\n";
-            cout << "How many elements do you want to added..\n";
-            cin >> sz;
-            for (int i = 0; i < sz; ++i)
+        switch (choice) {
+            case 1:
             {
-                cout << "input the element: \n";
-                cin >> num;
-                //Insert the elements into BST
-                sll.addToHead(num);
-            }
-            cout << "--Menu SLL--\n";
-            cout << "1.Add To Head.\n";
-            cout << "=============================\n";
-            cout << "Input what you want: \n";
-            cin >> choice;
-            switch (choice)
-            {
-                case 1:
+                cout << "===============================\n";
+                cout << "How many elements do you want to add: ";
+                cin >> sz;
+
+                for (int i = 0; i < sz; ++i)
                 {
-                    cout << "--SLL before add Item--\n";
-                    sll.print();
-                    cout << "=============================\n";
-                    cout << "Input the item: \n";
-                    cin >> item;
-                    sll.addToHead(item);
-                    cout << "=============================\n";
-                    cout << "--After add to head--\n";
-                    sll.print();
-                    cout << "=============================\n";
-                    break;
+                    cout << "Input element "<< i + 1 << ":  ";
+                    cin >> num;
+                    sll.addToHead(num);
                 }
-                case 2:
+                cout << "===============================\n";
+                cout << "--Menu SLL--\n";
+                cout << "1.Add To Head.\n";
+                cout << "2.Add To Tail.\n";
+                cout << "3.Exit.\n";
+                cout << "===============================\n";
+                cout << "Input your choice: ";
+                cin >> choice;
+                switch (choice)
                 {
-                    exit(0);
+                    case 1: {
+                        cout << "--SLL before adding an item--\n";
+                        sll.print();
+                        cout << "Input the item: ";
+                        cin >> item;
+                        sll.addToHead(item);
+                        cout << "--After adding to the head--\n";
+                        sll.print();
+                        break;
+                    }
+                    case 2:
+                    {
+                        cout << "--SLL before adding an item--\n";
+                        sll.print();
+                        cout << "Input the item: ";
+                        cin >> item;
+                        sll.addToTail(item);
+                        cout << "--After adding to Tail--\n";
+                        sll.print();
+                        break;
+                    }
+                    case 3:
+                    {
+                        break;
+                    }
+                    default: {
+                        cout << "Invalid Input!\n";
+                        break;
+                    }
                 }
-                default:
-                {
-                    cout << "Invalid Input!\n";
-                    break;
-                }
-            }
+                break;
         }
         case 2:
         {

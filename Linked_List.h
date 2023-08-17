@@ -23,6 +23,7 @@ private:
 public:
     SLL():head(nullptr),tail(nullptr){}
     void addToHead( T item);
+    void addToTail(T item);
     void print();
 };
 
@@ -53,6 +54,23 @@ void SLL<T>::print()
         cur = cur->getNext();
     }
     cout << endl;
+}
+
+template<typename T>
+void SLL<T>::addToTail(T item)
+{
+    nodeSLL<T>* newNode = new nodeSLL(item, tail);
+    newNode->setInfo(item);
+    newNode->setNext(nullptr);
+    if (!head)
+    {
+        head = newNode; // Update the first pointer if the list is empty
+    } else
+    {
+        tail->setNext(newNode);
+    }
+
+    tail = newNode;
 }
 
 
