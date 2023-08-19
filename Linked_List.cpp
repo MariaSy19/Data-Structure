@@ -9,7 +9,7 @@ private:
     nodeSLL<T> *next;
 public:
     nodeSLL(T data, nodeSLL* n = nullptr) : info(data), next(n) {}
-    nodeSLL *getNext() { return next; }
+    nodeSLL *getNext() { return next;}
     void setNext(nodeSLL* n) { next = n; }
     T& getInfo() { return info; }
     void setInfo(T val) { info = val; }
@@ -22,15 +22,15 @@ private:
     nodeSLL<T> *head, *tail;
 public:
     SLL():head(nullptr),tail(nullptr){}
-    void addToHead( T item);
-    void addToTail(T item);
+    void addToHead( T& item);
+    void addToTail(T& item);
     void print();
     T removeFromHead();
     T removeFromTail();
     T getValueAtHead();
     bool isEmpty();
     void clear();
-    void pairWise();
+    void pairwiseSwapNode();
     void removeDuplicate();
     friend ostream &operator<<(ostream &output, const SLL<T> &sll)
     {
@@ -46,19 +46,19 @@ public:
 
 /// Function AddToHead
 template<typename T>
-void SLL<T>::addToHead(T item)
+void SLL<T>::addToHead(T& item)
 {
     nodeSLL<T>* newNode = new nodeSLL(item, head);
     newNode->setInfo(item); // Update the info value of the new node
 
-    // If the linked list is empty
+    // If the SLL is empty
     if (!head)
     {
-        head = tail = newNode;
+        head = tail = newNode; //the value of head and tail = newNode value
     }
     else
     {
-        head = newNode; // Update the first pointer to the new node
+        head = newNode; // Update the first Node to become new node
     }
 }
 
@@ -67,20 +67,20 @@ template<typename T>
 void SLL<T>::print()
 {
     nodeSLL<T> *cur = head;
-    while (cur != nullptr)
+    while (cur != nullptr) //still when current node reach to the tail of SLL
     {
-        cout << cur->getInfo() << " ";
-        cur = cur->getNext();
+        cout << cur->getInfo() << " "; // display a value of the current node
+        cur = cur->getNext(); // move to the next node
     }
     cout << endl;
 }
 
 /// Function AddToTail
 template<typename T>
-void SLL<T>::addToTail(T item)
+void SLL<T>::addToTail(T& item)
 {
     nodeSLL<T>* newNode = new nodeSLL(item, tail);
-    newNode->setInfo(item);
+    newNode->setInfo(item); // set the value of the item = the data of the newNode
     newNode->setNext(nullptr);
     if (!head)
     {
@@ -90,7 +90,7 @@ void SLL<T>::addToTail(T item)
         tail->setNext(newNode);
     }
 
-    tail = newNode;
+    tail = newNode; // Tail = newNode
 }
 
 /// Function RemoveFromHead
@@ -103,17 +103,17 @@ T SLL<T>::removeFromHead()
         return T();
     } else if (!head->getNext()) //in this case the linked list has only one node
     {
-        T val = head->getInfo();
-        delete head;
+        T val = head->getInfo(); //store the value of the head in the val variable
+        delete head; // delete the head Node in the SLL
         head = tail = nullptr;
-        return val;
+        return val; // return value
     } else //in this case the linked list have a many nodes
     {
         nodeSLL<T> *curr = head; //create a new node and make it equal the first node
         head = head->getNext(); //for make first node refer to the node after
-        T val = curr->getInfo();
-        delete curr;
-        return val;
+        T val = curr->getInfo(); // store the value of the head in the val variable
+        delete curr; // delete curr pointer
+        return val; //return value
     }
 
 }
@@ -126,19 +126,19 @@ T SLL<T>::removeFromTail()
         cout << "SLL is empty. \n";
         return T();
     }
-    else if (!head->getNext()) // If the linked list has only one node
+    else if (!head->getNext()) // If SLL has only one node
     {
         T val = head->getInfo();
         delete head;
         head = tail = nullptr;
         return val;
     }
-    else
+    else //in this case the linked list have a many nodes
     {
         nodeSLL<T> *curr = head->getNext();
         nodeSLL<T> *prev = head;
 
-        while (curr->getNext() != nullptr) // Traverse to the second-to-last node
+        while (curr->getNext() != nullptr) // move to the second node, still reach to the tail of the SLL
         {
             prev = curr;
             curr = curr->getNext();
@@ -146,7 +146,7 @@ T SLL<T>::removeFromTail()
 
         T val = curr->getInfo();
         delete curr;
-        prev->setNext(nullptr); // Make the second-to-last node the new tail
+        prev->setNext(nullptr);
         tail = prev; // Update the tail pointer
 
         return val;
@@ -186,7 +186,7 @@ void SLL<T>::clear()
 
 /// pairWise swap nodes
 template<typename T>
-void SLL<T>::pairWise()
+void SLL<T>::pairwiseSwapNode()
 {
     nodeSLL<T> *curr = head;
     while (curr != nullptr && curr->getNext() != nullptr) //loop even reach the end of the SLL or if the next of the current node to reach to the null
@@ -203,7 +203,8 @@ void SLL<T>::removeDuplicate()
     while (curr != nullptr && curr->getNext() != nullptr) //loop even reach the end of the SLL or if the next of the current node to reach to the null
     {
         nodeSLL<T> *newNode = curr;
-        while (newNode->getNext() != nullptr) {
+        while (newNode->getNext() != nullptr)
+        {
             if (curr->getInfo() == newNode->getNext()->getInfo()) // check if we have a duplicate element
             {
                 nodeSLL<T>* dupNode = newNode->getNext(); //copy the item

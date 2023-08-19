@@ -1,4 +1,5 @@
 using namespace std;
+///class for node
 template<typename T>
 class node
 {
@@ -8,6 +9,7 @@ public:
     node<T> *rightChild;
     T data;
 };
+///class for BST
 template<typename T>
 class BST1 {
 private:

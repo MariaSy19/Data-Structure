@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-template <class T>
-
+template <typename T>
+///class Stack
 class Stack{
     struct node
     {
@@ -14,14 +14,16 @@ public:
     bool Empty();
     void Push(T item);
     void Pop();
-    T Top();
+    T getTop();
     void reverse(Stack<T> &st);
-    void delMid(stack<T>& stk);
-    void pushBottom(const T& value); //use in function reverse
+    void delMid(Stack<T>& stk);
+    void pushBack(const T& value); //use in function reverse
     void print();
+    int size() const; // use in function delete middle element
 };
 
-template<class T>
+/// Push Function
+template<typename T>
 void Stack<T>::Push(T item)
 {
     node *newNode = new node; // create a new node
@@ -31,12 +33,13 @@ void Stack<T>::Push(T item)
         return;
     }
 
-    newNode->item = item; // store the item entered = the item of the newNode
+    newNode->item = item; // store  item  = the item of the newNode
     newNode->next = top;
     top = newNode;
 }
 
-template<class T>
+/// Pop Function
+template<typename T>
 void Stack<T>::Pop()
 {
     if (Empty()) //check if the stack is empty or not
@@ -53,13 +56,15 @@ void Stack<T>::Pop()
     }
 }
 
-template<class T>
+///Empty FUnction
+template<typename T>
 bool Stack<T>::Empty()
 {
     return (top == nullptr);
 }
 
-template<class T>
+/// Print Function
+template<typename T>
 void Stack<T>::print()
 {
     node *curr = top;
@@ -73,8 +78,9 @@ void Stack<T>::print()
     cout << endl;
 }
 
-template <class T>
-T Stack<T>::Top()
+/// getTop function
+template <typename T>
+T Stack<T>::getTop()
 {
     if (Empty()) // check if the stack is empty
     {
@@ -86,20 +92,22 @@ T Stack<T>::Top()
     }
 }
 
-template <class T>
+/// reverse function
+template <typename T>
 void Stack<T>::reverse(Stack<T>& stk)
 {
     if (stk.Empty()) // Check if the stack is empty or not
     {
         return;
     }
-    T ele = stk.Top(); // Get the top element of the stack
+    T ele = stk.getTop(); // Get the top element of the stack
     stk.Pop();         // Pop the top element, move to the next element
     reverse(stk);      // Recursive function
-    stk.pushBottom(ele); // Push the top element to the bottom of the stack
+    stk.pushBack(ele); // Push the top element to the bottom of the stack
 }
-template <class T>
-void Stack<T>::pushBottom(const T& val)
+/// PushBack function
+template <typename T>
+void Stack<T>::pushBack(const T& val)
 {
     if (Empty()) // If the stack is empty
     {
@@ -107,42 +115,56 @@ void Stack<T>::pushBottom(const T& val)
     }
     else
     {
-        T temp = Top(); // Get the top element
+        T temp = getTop(); // Get the top element
         Pop();          // Pop the top element
-        pushBottom(val); // recursion
+        pushBack(val); // recursion
         Push(temp);     // Push the original top element back
     }
 }
-/// Function to delete the middle element of a stack
-template<typename T>
-void Stack<T>::delMid(stack<T>& stk)
+
+/// Function Size
+template <typename T>
+int Stack<T>::size() const
 {
-    if (stk.empty()) {
+    int count = 0;
+    node* curr = top;
+    while (curr != nullptr)
+    {
+        count++;
+        curr = curr->next;
+    }
+    return count;
+}
+
+/// Function Delete middle element
+template<typename T>
+void Stack<T>::delMid(Stack<T>& stk)
+{
+    if (stk.Empty()) // if the stack is empty
+    {
         return;
     }
 
-    int stackSize = stk.size(); // Use size() instead of manually counting elements
-    stack<T> tempStack;         // Temporary stack for storage
+    Stack<T> tempStack;// Temporary stack for storage
 
-    int midInx = stackSize / 2;
+    int midInx = (stk.size()) / 2;
 
     // Pop and push elements from the original stack to tempStack
     // until the middle index is reached
     while (midInx > 0)
     {
-        tempStack.push(stk.top());
-        stk.pop();
+        tempStack.Push(stk.getTop());
+        stk.Pop();
         midInx--;
     }
 
     // Skip the middle element by popping it
-    stk.pop();
+    stk.Pop();
 
     // Copy elements from tempStack back to stk
-    while (!tempStack.empty())
+    while (!tempStack.Empty())
     {
-        stk.push(tempStack.top());
-        tempStack.pop();
+        stk.Push(tempStack.getTop());
+        tempStack.Pop();
     }
 }
-

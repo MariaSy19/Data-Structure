@@ -159,7 +159,7 @@ int main() {
                             //test function pairWise
                             cout << "===============================\n";
                             cout << "--After use pairwise swap function--\n";
-                            sll.pairWise();
+                            sll.pairwiseSwapNode();
                             sll.print();
                             cout << "===============================\n";
                             break;
@@ -240,7 +240,7 @@ int main() {
                         case 3: {
                             // Test function getTop()
                             cout << "===============================\n";
-                            cout << "--Stack top is-- " << stack1.Top() << endl;
+                            cout << "--Stack top is-- " << stack1.getTop() << endl;
 
                             cout << "===============================\n";
                             cout << "For check, Stack elements: ";
@@ -279,15 +279,17 @@ int main() {
                             cout << "--Original Stack--\n";
                             stack1.print();
                             cout << "===============================\n";
-                            stack<int> stdStack;
-                            while (!stack1.Empty()) {
-                                stdStack.push(stack1.Top());
+                            Stack<int> stk;
+                            while (!stack1.Empty())
+                            {
+                                stk.Push(stack1.getTop());
                                 stack1.Pop();
                             }
-                            stack1.delMid(stdStack);
-                            while (!stdStack.empty()) {
-                                stack1.Push(stdStack.top());
-                                stdStack.pop();
+                            stack1.delMid(stk);
+                            while (!stk.Empty())
+                            {
+                                stack1.Push(stk.getTop());
+                                stk.Pop();
                             }
                             cout << "--Stack after deleting middle--\n";
                             stack1.print();

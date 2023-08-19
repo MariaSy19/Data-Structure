@@ -9,7 +9,7 @@ int binaryNumber(int num)
     {
         string currNum =queue1.front();//store the front number in a queue in the currNum
         queue1.pop();//remove the front element from the queue
-        cout<<currNum << " "; //print the current binary number
+        cout<<currNum << " "; //display  the current binary number
         queue1.push(currNum + "0"); //Enqueue the binary number with '0' append
         queue1.push(currNum + "1"); //Enqueue the binary number with '1' append
     }
@@ -26,7 +26,8 @@ void merge(queue<int> &l, queue<int> &r, queue<int> &resQueue) // l = left , r =
         {
             resQueue.push(l.front()); // push the left in the new queue
             l.pop(); //then pop the element
-        } else {
+        } else
+        {
             resQueue.push(r.front());
             r.pop();
         }
