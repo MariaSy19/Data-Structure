@@ -75,7 +75,6 @@ void BST1<T>::breadthFirst()
 {
     if (root == nullptr) //check  tree is empty
         return;
-
     queue<node<T>*> queue1; //create a queue for store the nodes for traversal
     queue1.push(root); // initial value
 
@@ -86,10 +85,10 @@ void BST1<T>::breadthFirst()
         cout << curr->data << " "; // show the value of the current node
 
         if (curr->leftChild) // if the current node in the leftSubtree
-            queue1.push(curr->leftChild); // push  the leftChild of the current node in the queue
+            queue1.push(curr->leftChild); // push  the  node of leftChild of the current node in the queue
 
         if (curr->rightChild)// if the current node in the rightSubtree
-            queue1.push(curr->rightChild);// push  the rightChild of the current node in the queue
+            queue1.push(curr->rightChild);// push  the node rightChild of the current node in the queue
     }
 }
 
@@ -140,7 +139,7 @@ void BST1<T>::deleteBST(const T& item)
 template<typename T>
 void BST1<T>::inOrder(node<T>* ptr) //left root right
 {
-    if (ptr == nullptr)
+    if (ptr == nullptr) // if BST is empty
         return;
 
     inOrder(ptr->leftChild);

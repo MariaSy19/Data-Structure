@@ -3,17 +3,21 @@ using namespace std;
 /// point one ' binary number '
 int binaryNumber(int num)
 {
-    queue<string> queue1;
-    queue1.push("1"); //initial value for queue
-    while(num--)
+    for (int i = 1; i <= num; ++i)
     {
-        string currNum =queue1.front();//store the front number in a queue in the currNum
-        queue1.pop();//remove the front element from the queue
-        cout<<currNum << " "; //display  the current binary number
-        queue1.push(currNum + "0"); //Enqueue the binary number with '0' append
-        queue1.push(currNum + "1"); //Enqueue the binary number with '1' append
+        int num2 = i; // current number
+        int bnr = 0; // binary number representation
+        int base = 1;
+        while (num2 > 0) // convert from decimal number to binary number
+        {
+            int rem = num2 % 2; // calculate remainder
+            bnr += rem * base; // add reminder to binary
+            num2 /= 2;
+            base *= 10; // increase base to move to the next position
+        }
+        cout << bnr << " "; // display the binary number 
     }
-    return 0;
+
 }
 
 ///Sorting queue function
@@ -73,7 +77,8 @@ void mergeSort(queue<int> &queue1)
 ///print function
 void print (queue<int> &queue1)
 {
-    while (!queue1.empty()) {
+    while (!queue1.empty())
+    {
         cout << queue1.front() << " ";
         queue1.pop();
     }
